@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricPulse - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional Styles for Lottie Animation */
+        #animationContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px; /* Fixed width for the animation */
+            margin: 0 40px; /* Increased space around the animation */
+        }
+
+        /* Lottie Animation size increased */
+        dotlottie-player {
+            width: 500px; /* Increased width */
+            height: 500px; /* Increased height */
+        }
+
+
+ 
+        .hero {
+            background: -webkit-linear-gradient(45deg, rgba(195,146,52) ,rgb(169, 160, 97), rgba(195,146,52));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  font-family: Poppins;
+font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  filter: brightness(150%);
+  transition: transform 0.3s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin: 0.2em;
+        }
+        .hero:hover{
+            transform: scale(1.2);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+
+        /* Milestone Images Section beside the animation */
+        .milestones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        /* The container for left and right milestone images */
+        .milestones-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 40px; /* Increased spacing between animation and left milestones */
+        }
+
+        .milestones-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 40px; /* Increased spacing between animation and right milestone */
+        }
+
+        .milestone {
+            text-align: center;
+            margin-bottom: 20px; /* Increased bottom margin for better spacing */
+            max-width: 250px; /* Increased width of the image container */
+        }
+
+        .milestone img {
+            width: 100%;
+            max-width: 250px; /* Increased size of milestone images */
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>CricPulse</h1>
+        </div>
+        <nav>
+            <ul>
+                <li ><a href="index.html"  class="active">Home</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="teams.html">Teams</a></li>
+                <li><a href="rankings.html">Rankings</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to CricPulse</h2>
+        <p>Your ultimate cricket companion for scores, rankings, and schedules.</p>
+    </section>
+
+    <!-- Centered Lottie Animation and Milestones Section -->
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
+        <!-- Left Milestones (1 milestone) -->
+        <div class="milestones-left">
+            <div class="milestone">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTkUuH0AQKGYZlxb_SwN_T-NxA5EiVxgejSw&s" alt="Sachin Tendulkar's 100th Century">
+                <p>Sachin Tendulkar's 100th Century</p>
+            </div>
+            <div class="milestone">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTkUuH0AQKGYZlxb_SwN_T-NxA5EiVxgejSw&s" alt="India's World Cup Victory">
+                <p>India's World Cup Victory - 2011</p>
+            </div>
+        </div>
+
+        <!-- Lottie Animation in the Center -->
+        <div id="animationContainer">
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+            <dotlottie-player src="https://lottie.host/7bcd6eaf-dafa-4c66-bb99-7d203126efd8/44S5H4lYxP.json" 
+                background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay>
+            </dotlottie-player>
+        </div>
+
+        <!-- Right Milestones (2 milestones) -->
+        <div class="milestones-right">
+            <div class="milestone">
+                <img src="https://www.insidesport.in/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-25-at-10.24.16-AM.jpeg" alt="India's World Cup Victory - 1983">
+                <p>India's World Cup Victory - 1983</p>
+            </div>
+            <div class="milestone">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdv322PfrzFxC6xFkybMF_vXXGfxSiA7B1Tg&s" alt="West Indies - 1975 World Cup Win">
+                <p>West Indies' First World Cup Win - 1975</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 CricPulse - All Rights Reserved</p>
+    </footer>
+</body>
+</html>

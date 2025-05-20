@@ -1,0 +1,619 @@
+/* General Styles */
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('img2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #f0f0f0; /* Fallback color in case the image doesn't load */
+    
+}
+.op{
+    margin:auto;
+    padding: 20px;
+
+}
+
+/* Other existing CSS below */
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Header Styling */
+header {
+    background-color: #0a2744;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo h1 {
+    margin: 0 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    padding: 0.5em 1em;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background-color: #3498DB;
+}
+
+/* Hero Section */
+.hero {
+    background: -webkit-linear-gradient(45deg, rgba(195,146,52) ,rgb(169, 160, 97), rgba(195,146,52));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  font-family: Poppins;
+font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  filter: brightness(150%);
+    color: white;
+    text-align: center;
+    padding: 4em 0;
+    margin-bottom: 2em;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin: 0.2em;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+/* Cricket Milestones Section */
+.milestones {
+    text-align: center;
+    margin: 2em 0;
+}
+
+/* Cricket logo */
+.cricket-logo {
+    width: 150px;
+    margin-bottom: 1em;
+}
+
+/* Milestone Images */
+.milestone-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5em;
+    padding: 0 2em;
+}
+
+.milestone {
+    background-color: #cfebbd;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.2s linear;
+    background: linear-gradient(to bottom, #fa942e9d, #e4392aa6);
+    margin:30px
+}
+.milestone:hover{
+    transform: scale(1.1);
+    /* margin:30px; */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.milestone img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0.5em;
+}
+
+.milestone p {
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #0a2744;
+    color: white;
+    padding: 1.5em 0;
+    margin-top: 2em;
+}
+/* Ensures the footer stays at the bottom */
+body, html {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/***********************************************************/
+        .teams-table {
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            
+        }
+        .teams-list {
+            width: 60%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+            /* background: linear-gradient(to bottom, #2d40d09d, #0e0756a6); */
+            border-radius: 10px;
+            padding: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .team-item {
+            display: flex;
+            align-items: center;
+            padding: 1em;
+  
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.2em;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .team-item:hover {
+            background-color: #e1f5fe;
+        }
+        .team-item img {
+            width: 40px;
+            height: 30px;
+            margin-right: 1em;
+            border-radius: 3px;
+        }
+
+
+
+/* ********************************************************* */
+/* Schedule Page Styling */
+.schedule-hero {
+    background-color: #2980B9;
+    color: white;
+    text-align: center;
+    padding: 3em 0;
+    margin-bottom: 2em;
+}
+
+.schedule-hero h2 {
+    font-size: 2.5em;
+    margin: 0.2em;
+}
+
+.schedule-hero p {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+
+/* Schedule Table Section */
+.schedule-table {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.schedule-table table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 1em;
+    text-align: center;
+}
+
+.schedule-table th {
+    background-color: #3498DB;
+    color: white;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.schedule-table tr:hover {
+    background-color: #e0f7ff;
+}
+
+
+/* ********************************************************* */
+/*series page*/
+
+.series-table {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+
+}
+
+.series-table table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.series-table th, .series-table td {
+    padding: 1em;
+    text-align: center;
+}
+
+.series-table th {
+    background-color:#481E14;
+    color: white;
+}
+
+.series-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.series-table tr:hover {
+    background-color: #e0f7ff;
+}
+
+
+/* ********************************************************* */
+
+/* Rankings Page */
+.ranking-table {
+    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    gap: 1em; /* Spacing between elements */
+    padding: 3em;
+    padding-left:15%;
+    width: 70% ;
+}
+
+.ranking-table table {
+    margin: auto; /* Center the table horizontally */
+    width: 80%; /* Adjust the width if needed */
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ranking-table th, .ranking-table td {
+    text-align: center;
+    padding: 1em; /* Adjust padding for better spacing */
+}
+
+.ranking-table th {
+    background-color:#481E14;
+    color: white;
+    font-size: 1.2em;
+}
+
+.ranking-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.ranking-table tr:hover {
+    background-color: #e0f7ff;
+}
+
+.category-buttons,
+.format-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em; /* Spacing between buttons */
+    margin: 0.5em 0;
+}
+/********************************************************/
+.matches-container {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap: 20px; /* Reduced the gap between match cards */
+    padding: 15px; /* Slightly reduced padding */
+    margin: auto;
+}
+
+.match-card {
+    background: linear-gradient(to bottom, #fa942e9d, #e4392aa6);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px; /* Reduced padding inside each card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.match-card:hover {
+    background: linear-gradient(to bottom, #e4392aa6, #fa942e9d);
+    transform: scale(1.1); /* Reduced hover scale for a compact look */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.match-header h3 {
+    margin: 0 0 5px 0; /* Reduced space below the header */
+    font-size: 1.3em; /* Adjusted font size */
+    color: #333;
+}
+
+.match-scores {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px; /* Reduced space above scores */
+    font-size: 1.1em;
+    color: #333;
+}
+
+.match-scores strong {
+    font-size: 1em; /* Slightly smaller font size for compactness */
+    color: #000;
+}
+
+.match-details p, 
+.match-status, 
+.match-description {
+    margin: 3px 0; /* Reduced vertical spacing */
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #666;
+}
+
+.match-description {
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 8px; /* Reduced space above description */
+    color: #000;
+}
+
+.match-info p {
+    margin: 0;
+    font-size: 1em; /* Adjusted font size */
+    color: #333;
+}
+.match-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Space between rows */
+}
+
+.match-scores {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column; /* Ensures scores are stacked vertically */
+}
+
+.match-scores div {
+    display: flex;
+    flex-direction: column; /* Stacks Team B below Team A */
+}
+
+.match-scores p {
+    margin: 5px 0; /* Spacing between scores */
+}
+
+.match-info {
+    flex: 2;
+    text-align: right;
+}
+
+.match-info h3 {
+    margin: 0 0 5px; /* Tighten space under date */
+}
+
+.match-info p {
+    margin: 5px 0; /* Spacing for venue and timings */
+}
+
+.match-divider {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.match-description {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #777;
+}
+.match-scores p  {
+    color: #fcca03; /* Bright yellow for Team IDs */
+    font-weight: bold;
+}
+
+
+
+.match-info h3 {
+    color: #ffffff; /* White for the date */
+    font-size: 1.2em;
+}
+
+.match-info p {
+    color: #d9d9d9; /* Light gray for timings and venue */
+    font-size: 1em;
+}
+
+
+.viewmatches{
+    border-radius: 10px;
+box-shadow: 1px 2px 4px rgb(45, 43, 43);
+padding: 10px;
+}
+.viewmatches:hover{
+    transform: scale(1.1);
+    background-color: rgb(223, 223, 223);
+}
+/* #id1 ,#id2{ */
+    /* border-radius: 30%; */
+    .profile-title, .info-text {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Layout for the profile container */
+    .profile-container {
+        display: flex;
+        margin: 20px;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+        flex: 1;
+        padding: 20px;
+        background: linear-gradient(to bottom, #9192c79d, #4d17e2a6);
+        border-radius: 9.81%;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    /* Sidebar links and buttons */
+    .sidebar ul li a, .sidebar ul li button {
+        text-decoration: none;
+        color: white; /* Uniform color for text */
+        background: none; /* No background by default */
+        border: none; /* Removes borders */
+        cursor: pointer;
+        display: block; /* Block layout for consistent alignment */
+        padding: 10px; /* Spacing around text */
+        text-align: left; /* Left-aligned text */
+        font-size: 18px; /* Font size for all items */
+        font-family: Arial, sans-serif; /* Font style consistency */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hover effect */
+    }
+
+    /* Hover effect for sidebar items */
+    .sidebar ul li a:hover, .sidebar ul li button:hover {
+        background-color: #4d17e2; /* Light blue hover background */
+        color: white; /* Ensure visibility on hover */
+        border-radius: 5px; /* Slightly rounded corners on hover */
+    }
+
+    /* Sidebar specific delete account link */
+    .sidebar ul li a[style="color: red;"] {
+        color: red; /* Red for delete account */
+    }
+
+    /* Styling for the details section */
+    .details-section {
+        flex: 3;
+        padding: 20px;
+    }
+
+    .details-section h3 {
+        margin-bottom: 20px;
+    }
+
+    /* Labels and input fields styling */
+    .details-section label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    .details-section input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Footer styling */
+    footer {
+        text-align: center;
+        background-color: #0a2744;
+        color: white;
+        padding: 1.5em 0;
+    }
+
+/* CSS */
+.button-73 {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  height: 45px;
+  font-size: 1rem;
+}
+
+.button-73:hover {
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73 {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+

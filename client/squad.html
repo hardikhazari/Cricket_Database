@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Squad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #team-name {
+            background: -webkit-linear-gradient(45deg, rgba(195,146,52), rgb(169, 160, 97), rgba(195,146,52));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+            font-family: Poppins, Arial, sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0,5em 0;
+            filter: brightness(150%);
+            margin-bottom: 1em;
+        }
+        #players-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2em;
+        }
+        .player-item {
+            background: linear-gradient(to bottom, #fa942e9d, #e4392aa6);
+            border-radius: 10px;
+            padding: 1em;
+            margin: 1em;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s linear;
+        }
+        .player-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            filter: brightness(120%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>CricPulse</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="teams.html" class="active">Teams</a></li>
+                <li><a href="rankings.html">Rankings</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Team Squad</h1>
+    <p id="team-name"></p> <!-- Display the team name here -->
+    <img id="team-img" alt="Team Logo" style="display: block; margin: 0 auto; max-width: 150px; max-height: 150px;"> <!-- Dynamic team image -->
+
+    <section id="players-container">
+        <!-- Players will be displayed here -->
+    </section>
+
+    <script>
+        // Function to get the 'teamId' query parameter from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Fetch and display the players based on the teamId
+        document.addEventListener("DOMContentLoaded", () => {
+            const teamId = getQueryParam("teamId");
+            const teamImg = document.getElementById("team-img");
+
+            if (teamId) {
+                // Update the team name display based on teamId (optional)
+                const teamNames = {
+                    'AFG': 'Afghanistan',
+                    'AUS': 'Australia',
+                    'BAN': 'Bangladesh',
+                    'ENG': 'England',
+                    'IND': 'India',
+                    'NED': 'Netherlands',
+                    'NZ': 'New Zealand',
+                    'PAK': 'Pakistan',
+                    'SA': 'South Africa',
+                    'SL': 'Sri Lanka'
+                };
+                const teamName = teamNames[teamId] || 'Unknown Team';
+                document.getElementById("team-name").textContent = `Squad for ${teamName}`;
+
+                // Assign team logo images dynamically
+                const logos = {
+                    'AFG':'https://flagpedia.net/data/flags/w1600/af.png',
+                    'NED':'https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg',
+                    'NZ':'https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg',
+                    'IND': 'https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg',
+                    'AUS': 'https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg',
+                    'ENG': 'https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg',
+                    'PAK':'https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg',
+                    'SA':'https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg',
+                    'SL':'https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg',
+                    'BAN':'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg',
+                    // Add other team logos as required
+                };
+                teamImg.src = logos[teamId] || 'https://via.placeholder.com/150';
+                teamImg.alt = `${teamName} Logo`;
+
+                // Fetch player data from the backend using teamId
+                fetch(`http://localhost:3000/api/players/${teamId}`)
+                    .then(response => response.json())
+                    .then(data => displayPlayers(data))
+                    .catch(error => console.error("Error fetching squad:", error));
+            } else {
+                document.getElementById("players-container").innerHTML = "<p>Team ID not provided.</p>";
+            }
+        });
+
+        // Function to display players
+        function displayPlayers(players) {
+            const playersContainer = document.getElementById("players-container");
+            playersContainer.innerHTML = ""; // Clear any previous content
+
+            if (!players || players.length === 0) {
+                playersContainer.innerHTML = "<p>No players found for this team.</p>";
+                return;
+            }
+
+            players.forEach(player => {
+                const playerDiv = document.createElement("div");
+                playerDiv.classList.add("player-item");
+
+                const formattedDOB = new Date(player.DOB).toISOString().split('T')[0];
+
+                playerDiv.innerHTML = `
+                    <p style="font-size: 1.5rem; font-weight: bold;">${player.Name}</p>
+                    <p style="color: white;">Batting Type: ${player.Batting_Type}-handed batsman</p>
+                    <p style="color: white;">Bowling Type: ${player.Bowling_Type}</p>
+                    <p style="color: white;">Born: ${formattedDOB}</p>
+                `;
+                playersContainer.appendChild(playerDiv);
+            });
+        }
+    </script>
+
+    <footer>
+        <p>© 2026 CricPulse - All Rights Reserved</p>
+    </footer>
+</body>
+</html>

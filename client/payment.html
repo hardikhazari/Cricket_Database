@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: Poppins, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header, footer {
+            background-color: #2C3E50;
+            color: white;
+            padding: 1.5em 0;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 2em;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-container h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px; /* Add margin to create space between heading and form */
+        }
+
+        .payment-container label {
+            font-size: 1em;
+            margin-bottom: 0.2em; /* Reduced margin for label */
+            display: inline-block;
+            text-align: left;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .payment-container input, .payment-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 15px 0; /* Reduced margin for input fields */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .payment-container .amount {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 20px 0;
+            color: #2980B9;
+        }
+
+        .pay-button {
+            background-color: #2980B9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pay-button:hover {
+            background-color: #3498DB;
+        }
+
+        .cancel-button {
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border: none;
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancel-button:hover {
+            background-color: #c0392b;
+        }
+
+        .payment-container .button-container {
+            display: flex;
+            justify-content: space-between; /* Distribute space between buttons */
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin: 10px 0;
+            color: #ecf0f1;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Payment Details</h1>
+    </header>
+
+    <section class="payment-container">
+        <h2>Complete Your Subscription</h2>
+        <form id="payment-form">
+            <label for="user-email">Email</label><br>
+            <input type="email" id="user-email" placeholder="Enter your email" required><br>
+
+            <label for="subscription-plan">Select Subscription Plan</label><br>
+            <select id="subscription-plan" required>
+                <option value="" disabled selected>Select a plan</option>
+                <option value="399">Basic - INR 399/month</option>
+                <option value="999">Standard - INR 999/month</option>
+            </select><br>
+
+            <div class="amount" id="amount-display">Amount: INR 0</div>
+
+            <label for="card-number">Card Number</label><br>
+            <input type="text" id="card-number" placeholder="Enter your card number" required><br>
+
+            <label for="expiry-date">Expiry Date</label><br>
+            <input type="text" id="expiry-date" placeholder="MM/YY" required><br>
+
+            <label for="cvv">CVV</label><br>
+            <input type="text" id="cvv" placeholder="Enter CVV" required><br>
+
+            <label for="name-on-card">Name on Card</label><br>
+            <input type="text" id="name-on-card" placeholder="Enter name as on card" required><br>
+            <div class="button-container">
+                <button type="submit" class="pay-button">Pay Now</button>
+                <a href="subscription.html" class="cancel-button">Cancel</a>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 CricPulse - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const planSelector = document.getElementById('subscription-plan');
+        const amountDisplay = document.getElementById('amount-display');
+
+        // Update the displayed amount based on the selected plan
+        planSelector.addEventListener('change', function () {
+            const selectedPlanAmount = planSelector.value;
+            amountDisplay.textContent = `Amount: INR ${selectedPlanAmount}`;
+        });
+
+        // Handle the form submission
+        // Handle the form submission
+document.getElementById('payment-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const selectedPlan = planSelector.value;
+    const userEmail = document.getElementById('user-email').value;
+    const cardholderName = document.getElementById('name-on-card').value; // Capture the cardholder's name
+
+    if (!selectedPlan || !userEmail || !cardholderName) {
+        alert('Please complete all fields!');
+        return;
+    }
+
+    const paymentData = {
+        email: userEmail,
+        cardholderName: cardholderName, // Include the cardholder's name in the payload
+        amount: selectedPlan,
+        plan: selectedPlan === '399' ? 'Basic' : selectedPlan === '999' ? 'Standard' : 'Premium'
+    };
+
+    // Send payment data to the server to trigger the email
+    fetch('http://localhost:3000/subscribe', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Payment processed successfully!');
+        // Redirect to a thank-you or confirmation page
+        window.location.href = 'thank-you.html';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Payment failed. Please try again later.');
+    });
+});
+
+    </script>
+</body>
+</html>

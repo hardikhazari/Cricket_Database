@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricPulse - Subscription Plans</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Header Styling */
+        header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:1000;
+        }
+        .logo h1 {
+            margin: 0 1em;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 1em;
+        }
+        nav ul li a {
+            padding: 0.5em 1em;
+            background-color: #2980B9;
+            border-radius: 5px;
+        }
+        nav ul li a.active, nav ul li a:hover {
+            background-color: #3498DB;
+        }
+        /* Hero Section */
+        .hero {
+            color: white;
+            text-align: center;
+            padding: 4em 0;
+            margin-bottom: 2em;
+        }
+        .hero h2 {
+            font-size: 3em;
+            margin: 0.2em;
+        }
+        .hero p {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+        /* Current Plan Section */
+        .current-plan {
+            text-align: center;
+            margin-bottom: 2em;
+            background-color: #f5f5f5;
+            padding: 1.5em;
+            border-radius: 10px;
+            width: 80%;
+            margin: 0 auto 2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .current-plan h3 {
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+        .current-plan p {
+            font-size: 1em;
+            color: #666;
+        }
+        .current-plan .active-plan {
+            font-weight: bold;
+            color: #4caf50;
+        }
+        /* Subscription Plans Section */
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            padding: 2em;
+        }
+        .plan-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1.5em;
+            width: 30%;
+            text-align: left;
+        }
+        .plan-card h3 {
+            margin-bottom: 1em;
+            color: #333;
+        }
+        .plan-card p {
+            margin: 0.5em 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .plan-card .price {
+            font-size: 1.5em;
+            color: #d32f2f;
+            margin: 1em 0;
+        }
+        .plan-card .original-price {
+            text-decoration: line-through;
+            font-size: 0.9em;
+            color: #999;
+            margin-left: 0.5em;
+        }
+        .plan-card .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1em;
+        }
+        .plan-card .buttons button {
+            flex: 1;
+            margin: 0 0.5em;
+            padding: 0.5em;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .plan-card .buttons .know-more {
+            background-color: #ddd;
+            color: #333;
+        }
+        .plan-card .buttons .subscribe {
+            background-color: #4caf50;
+            color: white;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #2C3E50;
+            color: white;
+            padding: 1.5em 0;
+            margin-top: 2em;
+        }
+        /* Ensure footer stays at the bottom */
+        body, html {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>CricPulse</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="teams.html">Teams</a></li>
+                <li><a href="rankings.html">Rankings</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Subscription Plans</h2>
+        <p>Select the plan that suits you best.</p>
+    </section>
+
+    <section class="current-plan">
+        <h3>Your Current Plan</h3>
+        <p>You are currently subscribed to: <span class="active-plan">Premium Annual Plan</span></p>
+        <p>Next renewal date: <strong>December 1, 2025</strong></p>
+    </section>
+
+    <section class="plans-container">
+        <!-- Plan 1 -->
+        <div class="plan-card">
+            <h3>Premium Annual Plan</h3>
+            <p>- Ad-free experience</p>
+            <p>- Exclusive editorial content</p>
+            <p>- Live match commentary and detailed analysis</p>
+            <p class="price">
+                INR 399
+                <span class="original-price">INR 499</span>
+            </p>
+            <div class="buttons">
+                <button class="know-more">Know More</button>
+                <button class="subscribe" id="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="plan-card">
+            <h3>Pro Combo Plan</h3>
+            <p>- All features of Premium Plan</p>
+            <p>- Access to partner platforms like Hotstar, Netflix, and more</p>
+            <p>- Priority customer support</p>
+            <p class="price">
+                INR 999
+                <span class="original-price">INR 1299</span>
+            </p>
+            <div class="buttons">
+                <button class="know-more">Know More</button>
+                <button class="subscribe" id="subscribe-btn-2">Subscribe</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById('subscribe-btn').addEventListener('click', function () {
+            window.location.href = 'payment.html'; // Navigate to payment.html
+        });
+        document.getElementById('subscribe-btn-2').addEventListener('click', function () {
+            window.location.href = 'payment.html'; // Navigate to payment.html
+        });
+    </script>
+    
+    <footer>
+        <p>© 2026 Your Website - All Rights Reserved</p>
+    </footer>
+</body>
+</html>

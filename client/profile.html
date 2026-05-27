@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ensure the page fills the viewport */
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure it takes full height */
+        }
+
+        /* Make the wrapper take remaining space */
+        main {
+            flex: 1; /* Push the footer to the bottom */
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>CricPulse</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="teams.html">Teams</a></li>
+                <li><a href="rankings.html">Rankings</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h2>MY PROFILE</h2>
+        </section>
+    
+        <section class="profile-container">
+            <div class="sidebar">
+                <h2>My Account</h2>
+                <ul>
+                    <li><a href="subscription.html">Subscription</a></li>
+                    <li>
+                        <button id="sign-out">Sign Out</button>
+                    </li>
+                    <li><a href="#" style="color: red;">Delete Account</a></li>
+                </ul>
+            </div>
+    
+            <div class="divider"></div>
+    
+            <div class="details-section">
+                <label for="name" style="color:rgb(219, 198, 64);font-size: 20px;">Name</label>
+                <input type="text" id="name" readonly>
+                
+                <label for="email" style="color: rgb(219, 198, 64);font-size: 20px;">Email Id</label>
+                <input type="email" id="email" readonly>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2026 CricPulse - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            const username = localStorage.getItem('username');
+            const email = localStorage.getItem('email');
+
+            // Redirect to login if user is not logged in
+            if (!username || !email) {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('name').value = username;
+                document.getElementById('email').value = email;
+            }
+        };
+
+        // Handle Sign Out functionality
+        document.getElementById('sign-out').addEventListener('click', function () {
+            localStorage.clear(); // Clear all user data from localStorage
+            window.location.href = 'index.html'; // Redirect to the home page
+        });
+    </script>
+</body>
+</html>

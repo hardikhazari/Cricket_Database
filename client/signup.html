@@ -63,6 +63,20 @@
             transition: background-color 0.3s;
         }
 
+        .google-btn {
+            background-color: #ffffff !important;
+            color: #757575 !important;
+            border: 1px solid #ddd !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .google-btn:hover {
+            background-color: #f1f1f1 !important;
+        }
+
         .auth-container button:hover {
             background-color: #c9b439;
         }
@@ -94,7 +108,14 @@
             margin-top: 10px;
             display: none;
         }
+
+        .google-auth-wrapper {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+        }
     </style>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <header>
@@ -121,6 +142,23 @@
                 <input type="password" id="password" placeholder="Password" required>
                 <button type="submit">Sign Up</button>
             </form>
+            <div id="g_id_onload"
+                 data-client_id="766821786059-4kt0s8ctjg6v2lviho0pvcs07v76f5pf.apps.googleusercontent.com"
+                 data-context="signup"
+                 data-ux_mode="popup"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="google-auth-wrapper">
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="outline"
+                     data-text="signup_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
+            </div>
             <p id="error-message" class="error-message"></p>
             <p id="success-message" class="success-message"></p>
             <p>Already have an account? <a href="login.html">Login here</a></p>
@@ -168,6 +206,34 @@
                 errorElement.style.display = 'block';
             }
         });
+
+        // Real Google Signup - sends raw token to backend for secure verification
+        async function handleCredentialResponse(response) {
+            const errorElement = document.getElementById('error-message');
+            const token = response.credential;
+
+            try {
+                const res = await fetch('http://localhost:3000/google-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem('username', data.name);
+                    localStorage.setItem('email', data.email);
+                    window.location.href = 'profile.html';
+                } else {
+                    errorElement.textContent = data.message || 'Google Sign Up failed';
+                    errorElement.style.display = 'block';
+                }
+            } catch (err) {
+                errorElement.textContent = 'Error connecting to server';
+                errorElement.style.display = 'block';
+            }
+        }
     </script>
 </body>
 </html>

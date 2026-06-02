@@ -5,9 +5,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const path = require('path'); 
+const { OAuth2Client } = require('google-auth-library');
 
 const app = express();
 const PORT = 3000;
+
+// Google OAuth Client Setup
+const GOOGLE_CLIENT_ID = '766821786059-4kt0s8ctjg6v2lviho0pvcs07v76f5pf.apps.googleusercontent.com';
+const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 // Middleware setup
 app.use(bodyParser.json());
@@ -103,8 +108,27 @@ async function sendPaymentConfirmationEmail(userEmail, cardholderName, amount, p
 // Flow: Verify user exists in DB → Log the login event → Send confirmation email
 // Note: This does NOT auto-register new users — they must sign up first
 app.post('/google-login', async (req, res) => {
-    const { email, name } = req.body;
-    console.log('Google login data received:', email, name);
+    const { token } = req.body;
+    
+    if (!token) {
+        return res.status(400).json({ message: 'Google token is missing' });
+    }
+
+    let email, name;
+    try {
+        const ticket = await googleClient.verifyIdToken({
+            idToken: token,
+            audience: GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload();
+        email = payload.email;
+        name = payload.name || email.split('@')[0];
+    } catch (error) {
+        console.error('Error verifying Google token:', error);
+        return res.status(401).json({ message: 'Invalid or expired Google Token' });
+    }
+
+    console.log('Secure Google login data verified:', email, name);
 
     // --- TRANSACTION: Atomically verify user + insert login record ---
     // If the login log insert fails, we don't want a partial state where
@@ -138,10 +162,10 @@ app.post('/google-login', async (req, res) => {
         // Email is sent AFTER the transaction commits — if email fails,
         // the login is still recorded (email is non-critical)
         sendLoginEmail(email, name)
-            .then(() => res.status(200).json({ message: 'Google login successful' }))
+            .then(() => res.status(200).json({ message: 'Google login successful', email, name }))
             .catch((error) => {
                 console.error('Email sending failed:', error);
-                res.status(500).json({ message: 'Failed to send login email' });
+                res.status(200).json({ message: 'Google login successful, but email failed', email, name });
             });
 
     } catch (err) {

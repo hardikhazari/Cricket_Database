@@ -659,6 +659,28 @@ app.get('/api/player-form', async (req, res) => {
     }
 });
 
+// ============================================================================
+// ADMIN ROUTE
+// ============================================================================
+
+// Admin Dashboard: Add Match
+app.post('/api/admin/match', (req, res) => {
+    const { email, dates, timings, place, score1, score2, winnerId, description, status, teamA, teamB } = req.body;
+    
+    // Admin verification
+    db.query('SELECT is_admin FROM users WHERE email = ?', [email], (err, rows) => {
+        if (err || rows.length === 0 || !rows[0].is_admin) {
+            return res.status(403).json({ message: 'Unauthorized. Admin access required.' });
+        }
+        
+        const q = 'INSERT INTO matches (Dates, Timings, Place, Score_1, Score_2, Winner_Id, Description, Status, TeamA_Id, TeamB_Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(q, [dates, timings, place, score1, score2, winnerId, description, status, teamA, teamB], (err) => {
+            if (err) return res.status(500).json({ message: 'Database error' });
+            res.json({ message: 'Match inserted successfully!' });
+        });
+    });
+});
+
 // Route to serve the HTML file
 app.get('/rankings', (req, res) => {
     res.sendFile(path.join(__dirname, 'rankings.html'));

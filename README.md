@@ -15,6 +15,8 @@ CricPulse is a full-stack web application designed to showcase structured cricke
 - **Email Workflows**:
   - Automated login confirmation emails.
   - Instant subscription and payment confirmation receipts.
+- **Admin Dashboard**:
+  - Dedicated `admin.html` portal for authorized users to perform CRUD operations (add new matches).
 - **REST API Endpoints**:
   - Organized endpoints delivering data for rankings, squad rosters, series, tournaments, and match schedules.
 
@@ -79,3 +81,4 @@ npm install
 ![Screenshot 4](Photos/Screenshot%202026-06-02%20191537.png)
 ![Screenshot 5](Photos/Screenshot%202026-06-02%20191554.png)
 ![Screenshot 6](Photos/Screenshot%202026-06-02%20191621.png)
+![Screenshot 8](Photos/Screenshot%202026-06-03%20052830.png)

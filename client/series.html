@@ -1,81 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CricPulse - Upcoming Series</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>CricPulse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="series.html" class="active">Series</a></li>
-                <li><a href="teams.html">Teams</a></li>
-                <li><a href="rankings.html">Rankings</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <h1>CricPulse</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="series.html" class="active">Series</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="rankings.html">Rankings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="hero">
-        <h2>Cricket Series</h2>
-        <p>Stay informed about the latest series around the world.</p>
+      <h2>Cricket Series</h2>
+      <p>Stay informed about the latest series around the world.</p>
     </section>
 
     <section class="series-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Series</th>
-                    <th>Format</th>
-                    <th>Number of Matches</th>
-                    <th>Action</th> <!-- New Action column for buttons -->
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Rows will be dynamically populated -->
-            </tbody>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Series</th>
+            <th>Format</th>
+            <th>Number of Matches</th>
+            <th>Action</th>
+            <!-- New Action column for buttons -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be dynamically populated -->
+        </tbody>
+      </table>
     </section>
 
     <footer>
-        <p>© 2026 CricPulse - All Rights Reserved</p>
+      <p>© 2026 CricPulse - All Rights Reserved</p>
     </footer>
 
     <script>
-        const endpoint = 'http://localhost:3000/api/series';
+      const endpoint = "http://localhost:3000/api/series";
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const tableBody = document.querySelector(".series-table tbody");
+      document.addEventListener("DOMContentLoaded", function () {
+        const tableBody = document.querySelector(".series-table tbody");
 
-            // Fetch series data from the backend
-            fetch(endpoint)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch series data");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Populate the table with series data
-                    data.forEach(series => {
-                        const row = document.createElement("tr");
+        // Fetch series data from the backend
+        fetch(endpoint)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch series data");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Populate the table with series data
+            data.forEach((series) => {
+              const row = document.createElement("tr");
 
-                        // Determine the ID (either Series_Id or Tournament_Id) and create the navigation button
-                        const id = series.Series_Id || series.Tournament_Id;
-                        const paramType = series.Series_Id ? "seriesId" : "tournamentId";
+              // Determine the ID (either Series_Id or Tournament_Id) and create the navigation button
+              const id = series.Series_Id || series.Tournament_Id;
+              const paramType = series.Series_Id ? "seriesId" : "tournamentId";
 
-                        // Check if Series_Id is null or empty, and populate the first column accordingly
-                        const seriesNameOrTeams = (series.Series_Id && series.Series_Id.trim() !== "")
-                            ? `${series.TeamB} Tour of ${series.TeamA}`
-                            : series.Series_Name; // Use Series_Name when Series_Id is missing or empty
+              // Check if Series_Id is null or empty, and populate the first column accordingly
+              const seriesNameOrTeams =
+                series.Series_Id && series.Series_Id.trim() !== ""
+                  ? `${series.TeamB} Tour of ${series.TeamA}`
+                  : series.Series_Name; // Use Series_Name when Series_Id is missing or empty
 
-                        row.innerHTML = `
+              row.innerHTML = `
                             <td>${seriesNameOrTeams}</td>
                             <td>${series.Series_Format}</td>
                             <td>${series.NoOfMatches}</td>
@@ -84,18 +86,18 @@
                             </td>
                         `;
 
-                        tableBody.appendChild(row);
-                    });
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    tableBody.innerHTML = `<tr><td colspan="4">Failed to load data</td></tr>`;
-                });
-        });
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            tableBody.innerHTML = `<tr><td colspan="4">Failed to load data</td></tr>`;
+          });
+      });
 
-        function navigateToMatches(paramType, id) {
-            window.location.href = `matches.html?${paramType}=${id}`;
-        }
+      function navigateToMatches(paramType, id) {
+        window.location.href = `matches.html?${paramType}=${id}`;
+      }
     </script>
-</body>
+  </body>
 </html>

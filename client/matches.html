@@ -1,89 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CricPulse - Schedule</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>CricPulse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="series.html" class="active">Series</a></li>
-                <li><a href="teams.html">Teams</a></li>
-                <li><a href="rankings.html">Rankings</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <h1>CricPulse</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="series.html" class="active">Series</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="rankings.html">Rankings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="hero">
-        <h2> Matches Schedule</h2>
-        <p>Stay updated with all the latest fixtures and match timings.</p>
+      <h2>Matches Schedule</h2>
+      <p>Stay updated with all the latest fixtures and match timings.</p>
     </section>
 
     <section id="matchesContainer" class="matches-container">
-        <!-- Matches will be dynamically populated here -->
+      <!-- Matches will be dynamically populated here -->
     </section>
-    
+
     <footer>
-        <p>© 2026 CricPulse - All Rights Reserved</p>
+      <p>© 2026 CricPulse - All Rights Reserved</p>
     </footer>
-    
+
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const seriesId = urlParams.get('seriesId');
-        const tournamentId = urlParams.get('tournamentId');
-    
-        const endpoint = 'http://localhost:3000/api/schedule';
-        const matchesContainer = document.getElementById('matchesContainer');
-    
-        const countryCodes = {
-            India: 'IND',
-            Afghanistan: 'AFG',
-            Australia: 'AUS',
-            Bangladesh: 'BAN',
-            England: 'ENG',
-            Netherlands: 'NED',
-            'New Zealand': 'NZ',
-            Pakistan: 'PAK',
-            'South Africa': 'SA',
-            'Sri Lanka': 'SL',
-        };
-    
-        function getCountryCode(name) {
-            return countryCodes[name] || name;
-        }
-    
-        function formatDate(isoString) {
-            const date = new Date(isoString);
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return date.toLocaleDateString(undefined, options);
-        }
-    
-        fetch(`${endpoint}?seriesId=${seriesId || ''}&tournamentId=${tournamentId || ''}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch schedule data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.length === 0) {
-                    matchesContainer.innerHTML = '<p>No matches found for the selected series or tournament.</p>';
-                    return;
-                }
-    
-                data.forEach(match => {
-                    const matchCard = document.createElement('div');
-                    matchCard.classList.add('match-card');
-    
-                    matchCard.innerHTML = `
+      const urlParams = new URLSearchParams(window.location.search);
+      const seriesId = urlParams.get("seriesId");
+      const tournamentId = urlParams.get("tournamentId");
+
+      const endpoint = "http://localhost:3000/api/schedule";
+      const matchesContainer = document.getElementById("matchesContainer");
+
+      const countryCodes = {
+        India: "IND",
+        Afghanistan: "AFG",
+        Australia: "AUS",
+        Bangladesh: "BAN",
+        England: "ENG",
+        Netherlands: "NED",
+        "New Zealand": "NZ",
+        Pakistan: "PAK",
+        "South Africa": "SA",
+        "Sri Lanka": "SL",
+      };
+
+      function getCountryCode(name) {
+        return countryCodes[name] || name;
+      }
+
+      function formatDate(isoString) {
+        const date = new Date(isoString);
+        const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+        return date.toLocaleDateString(undefined, options);
+      }
+
+      fetch(
+        `${endpoint}?seriesId=${seriesId || ""}&tournamentId=${tournamentId || ""}`,
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch schedule data");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.length === 0) {
+            matchesContainer.innerHTML =
+              "<p>No matches found for the selected series or tournament.</p>";
+            return;
+          }
+
+          data.forEach((match) => {
+            const matchCard = document.createElement("div");
+            matchCard.classList.add("match-card");
+
+            matchCard.innerHTML = `
                         <div class="match-row">
                             <div class="match-scores">
                                 <div>
@@ -102,19 +105,14 @@
                             <strong>${match.Description}</strong>
                         </div>
                     `;
-    
-                    matchesContainer.appendChild(matchCard);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching schedule data:', error);
-                matchesContainer.innerHTML = '<p>Failed to load matches.</p>';
-            });
+
+            matchesContainer.appendChild(matchCard);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching schedule data:", error);
+          matchesContainer.innerHTML = "<p>Failed to load matches.</p>";
+        });
     </script>
-    
-    
-    
-    
-    
-</body>
+  </body>
 </html>

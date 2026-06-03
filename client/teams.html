@@ -1,85 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CricPulse - Teams</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>CricPulse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="series.html">Series</a></li>
-                <li><a href="teams.html" class="active">Teams</a></li>
-                <li><a href="rankings.html">Rankings</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <h1>CricPulse</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="teams.html" class="active">Teams</a></li>
+          <li><a href="rankings.html">Rankings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="hero">
-        <h2>Teams</h2>
+      <h2>Teams</h2>
     </section>
 
     <section class="teams-table">
-        <div class="teams-list">
-            <div class="team-item" onclick="navigateToSquad('IND')">
-                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India">
-                <span>India</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('AUS')">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" alt="Australia">
-                <span>Australia</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('PAK')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" alt="Pakistan">
-                <span>Pakistan</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('ENG')">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" alt="England">
-                <span>England</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('NZ')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" alt="New Zealand">
-                <span>New Zealand</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('SA')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" alt="South Africa">
-                <span>South Africa</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('SL')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg" alt="Sri Lanka">
-                <span>Sri Lanka</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('BAN')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" alt="Bangladesh">
-                <span>Bangladesh</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('AFG')">
-                <img src="https://flagpedia.net/data/flags/w1600/af.png" alt="Afghanistan">
-                <span>Afghanistan</span>
-            </div>
-            <div class="team-item" onclick="navigateToSquad('NED')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="Netherlands">
-                <span>Netherlands</span>
-            </div>
+      <div class="teams-list">
+        <div class="team-item" onclick="navigateToSquad('IND')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"
+            alt="India"
+          />
+          <span>India</span>
         </div>
+        <div class="team-item" onclick="navigateToSquad('AUS')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg"
+            alt="Australia"
+          />
+          <span>Australia</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('PAK')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
+            alt="Pakistan"
+          />
+          <span>Pakistan</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('ENG')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg"
+            alt="England"
+          />
+          <span>England</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('NZ')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg"
+            alt="New Zealand"
+          />
+          <span>New Zealand</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('SA')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg"
+            alt="South Africa"
+          />
+          <span>South Africa</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('SL')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg"
+            alt="Sri Lanka"
+          />
+          <span>Sri Lanka</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('BAN')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg"
+            alt="Bangladesh"
+          />
+          <span>Bangladesh</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('AFG')">
+          <img
+            src="https://flagpedia.net/data/flags/w1600/af.png"
+            alt="Afghanistan"
+          />
+          <span>Afghanistan</span>
+        </div>
+        <div class="team-item" onclick="navigateToSquad('NED')">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"
+            alt="Netherlands"
+          />
+          <span>Netherlands</span>
+        </div>
+      </div>
     </section>
     <script>
-        function navigateToSquad(teamId) {
-            window.location.href = `squad.html?teamId=${teamId}`;
-        }
+      function navigateToSquad(teamId) {
+        window.location.href = `squad.html?teamId=${teamId}`;
+      }
     </script>
 
     <footer>
-        <p>© 2026 CricPulse - All Rights Reserved</p>
+      <p>© 2026 CricPulse - All Rights Reserved</p>
     </footer>
-
-
-</body>
+  </body>
 </html>

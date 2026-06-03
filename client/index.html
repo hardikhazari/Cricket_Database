@@ -1,143 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CricPulse - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        /* Additional Styles for Lottie Animation */
-        #animationContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 500px; /* Fixed width for the animation */
-            margin: 0 40px; /* Increased space around the animation */
-        }
+      /* Additional Styles for Lottie Animation */
+      #animationContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 500px; /* Fixed width for the animation */
+        margin: 0 40px; /* Increased space around the animation */
+      }
 
-        /* Lottie Animation size increased */
-        dotlottie-player {
-            width: 500px; /* Increased width */
-            height: 500px; /* Increased height */
-        }
+      /* Lottie Animation size increased */
+      dotlottie-player {
+        width: 500px; /* Increased width */
+        height: 500px; /* Increased height */
+      }
 
+      .hero {
+        background: -webkit-linear-gradient(
+          45deg,
+          rgba(195, 146, 52),
+          rgb(169, 160, 97),
+          rgba(195, 146, 52)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-align: center;
+        filter: brightness(150%);
+        transition: transform 0.3s ease-out;
+      }
 
- 
-        .hero {
-            background: -webkit-linear-gradient(45deg, rgba(195,146,52) ,rgb(169, 160, 97), rgba(195,146,52));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
-  font-family: Poppins;
-font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  text-align: center;
-  filter: brightness(150%);
-  transition: transform 0.3s ease-out;
-        }
+      .hero h2 {
+        font-size: 3em;
+        margin: 0.2em;
+      }
+      .hero:hover {
+        transform: scale(1.2);
+      }
 
-        .hero h2 {
-            font-size: 3em;
-            margin: 0.2em;
-        }
-        .hero:hover{
-            transform: scale(1.2);
-        }
+      .hero p {
+        font-size: 1.5em;
+        margin: 0.5em 0;
+      }
 
-        .hero p {
-            font-size: 1.5em;
-            margin: 0.5em 0;
-        }
+      /* Milestone Images Section beside the animation */
+      .milestones {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 40px;
+      }
 
-        /* Milestone Images Section beside the animation */
-        .milestones {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 40px;
-        }
+      /* The container for left and right milestone images */
+      .milestones-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 40px; /* Increased spacing between animation and left milestones */
+      }
 
-        /* The container for left and right milestone images */
-        .milestones-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-right: 40px; /* Increased spacing between animation and left milestones */
-        }
+      .milestones-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 40px; /* Increased spacing between animation and right milestone */
+      }
 
-        .milestones-right {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 40px; /* Increased spacing between animation and right milestone */
-        }
+      .milestone {
+        text-align: center;
+        margin-bottom: 20px; /* Increased bottom margin for better spacing */
+        max-width: 250px; /* Increased width of the image container */
+      }
 
-        .milestone {
-            text-align: center;
-            margin-bottom: 20px; /* Increased bottom margin for better spacing */
-            max-width: 250px; /* Increased width of the image container */
-        }
-
-        .milestone img {
-            width: 100%;
-            max-width: 250px; /* Increased size of milestone images */
-            border-radius: 8px;
-        }
-
+      .milestone img {
+        width: 100%;
+        max-width: 250px; /* Increased size of milestone images */
+        border-radius: 8px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>CricPulse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li ><a href="index.html"  class="active">Home</a></li>
-                <li><a href="series.html">Series</a></li>
-                <li><a href="teams.html">Teams</a></li>
-                <li><a href="rankings.html">Rankings</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <h1>CricPulse</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="rankings.html">Rankings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="hero">
-        <h2>Welcome to CricPulse</h2>
-        <p>Your ultimate cricket companion for scores, rankings, and schedules.</p>
+      <h2>Welcome to CricPulse</h2>
+      <p>
+        Your ultimate cricket companion for scores, rankings, and schedules.
+      </p>
     </section>
 
     <!-- Centered Lottie Animation and Milestones Section -->
-    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
-        <div class="milestones-left">
-            <div class="milestone">
-                <img src="news1.jpg" alt="Latest News 1">
-                <p>Latest Match Updates & Highlights</p>
-            </div>
+    <div
+      style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px"
+    >
+      <div class="milestones-left">
+        <div class="milestone">
+          <img src="news1.jpg" alt="Latest News 1" />
+          <p>Latest Match Updates & Highlights</p>
         </div>
+      </div>
 
-        <!-- Lottie Animation in the Center -->
-        <div id="animationContainer">
-            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-            <dotlottie-player src="https://lottie.host/7bcd6eaf-dafa-4c66-bb99-7d203126efd8/44S5H4lYxP.json" 
-                background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay>
-            </dotlottie-player>
-        </div>
+      <!-- Lottie Animation in the Center -->
+      <div id="animationContainer">
+        <script
+          src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+          type="module"
+        ></script>
+        <dotlottie-player
+          src="https://lottie.host/7bcd6eaf-dafa-4c66-bb99-7d203126efd8/44S5H4lYxP.json"
+          background="transparent"
+          speed="1"
+          style="width: 500px; height: 500px"
+          loop
+          autoplay
+        >
+        </dotlottie-player>
+      </div>
 
-        <!-- Right Milestones -->
-        <div class="milestones-right">
-            <div class="milestone">
-                <img src="news2.webp" alt="Latest News 2">
-                <p>RCB becomes only the third franchise to defend their IPL crown</p>
-            </div>
+      <!-- Right Milestones -->
+      <div class="milestones-right">
+        <div class="milestone">
+          <img src="news2.webp" alt="Latest News 2" />
+          <p>RCB becomes only the third franchise to defend their IPL crown</p>
         </div>
+      </div>
     </div>
 
     <footer>
-        <p>© 2026 CricPulse - All Rights Reserved</p>
+      <p>© 2026 CricPulse - All Rights Reserved</p>
     </footer>
-</body>
+  </body>
 </html>

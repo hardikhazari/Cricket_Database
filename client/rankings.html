@@ -1,152 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cricket Rankings</title>
-    <link rel="stylesheet" href="styles.css">
-    <style> 
-        .op{
-            background: -webkit-linear-gradient(45deg, rgba(195,146,52), rgb(169, 160, 97), rgba(195,146,52));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
-            font-family: Poppins, Arial, sans-serif;
-            font-size: 3rem;
-            font-weight: 600;
-            text-align: center;
-            padding: 0,5em 0;
-            filter: brightness(150%);
-            margin-bottom: 1em;
-        }
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .op {
+        background: -webkit-linear-gradient(
+          45deg,
+          rgba(195, 146, 52),
+          rgb(169, 160, 97),
+          rgba(195, 146, 52)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+        font-family: Poppins, Arial, sans-serif;
+        font-size: 3rem;
+        font-weight: 600;
+        text-align: center;
+        padding:
+          0,
+          5em 0;
+        filter: brightness(150%);
+        margin-bottom: 1em;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>CricPulse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="series.html">Series</a></li>
-                <li><a href="teams.html">Teams</a></li>
-                <li><a href="rankings.html" class="active">Rankings</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <h1>CricPulse</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="rankings.html" class="active">Rankings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
     </header>
-</br>
+    <br />
     <div class="ss">
-    <section class="ranking-table">
+      <section class="ranking-table">
         <h2 id="rankingTypeHeader" class="op">Player Rankings</h2>
         <div class="category-buttons">
-            <button  class="button-73" onclick="showCategory('players')">Players</button>
-            <button class="button-73" onclick="showCategory('teams')">Teams</button>
+          <button class="button-73" onclick="showCategory('players')">
+            Players
+          </button>
+          <button class="button-73" onclick="showCategory('teams')">
+            Teams
+          </button>
         </div>
         <div class="format-buttons">
-            <button onclick="loadFormat('test')">Test</button>
-            <button onclick="loadFormat('odi')">ODI</button>
-            <button onclick="loadFormat('t20')">T20</button>
+          <button onclick="loadFormat('test')">Test</button>
+          <button onclick="loadFormat('odi')">ODI</button>
+          <button onclick="loadFormat('t20')">T20</button>
         </div>
         <table id="rankingsTable">
-            <thead>
-                <tr>
-                    <th id="firstColumn">Player Name</th>
-                    <th id="rankType">Rank</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data will be populated here -->
-            </tbody>
+          <thead>
+            <tr>
+              <th id="firstColumn">Player Name</th>
+              <th id="rankType">Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data will be populated here -->
+          </tbody>
         </table>
-    </section>
-</div>
+      </section>
+    </div>
     <footer>
-        <p>© 2026 CricPulse - All Rights Reserved</p>
+      <p>© 2026 CricPulse - All Rights Reserved</p>
     </footer>
 
     <script>
-        let currentCategory = 'players'; // Default category
-        let currentFormat = 'test'; // Default format
+      let currentCategory = "players"; // Default category
+      let currentFormat = "test"; // Default format
 
-        // Show category (Players or Teams)
-        function showCategory(category) {
-            currentCategory = category;
+      // Show category (Players or Teams)
+      function showCategory(category) {
+        currentCategory = category;
 
-            // Update the table headers and load default data
-            const header = document.getElementById("rankingTypeHeader");
-            const firstCol = document.getElementById("firstColumn");
+        // Update the table headers and load default data
+        const header = document.getElementById("rankingTypeHeader");
+        const firstCol = document.getElementById("firstColumn");
 
-            if (category === 'players') {
-                header.textContent = "Player Rankings";
-                firstCol.textContent = "Player Name";
-            } else {
-                header.textContent = "Team Rankings";
-                firstCol.textContent = "Team Name";
+        if (category === "players") {
+          header.textContent = "Player Rankings";
+          firstCol.textContent = "Player Name";
+        } else {
+          header.textContent = "Team Rankings";
+          firstCol.textContent = "Team Name";
+        }
+
+        loadFormat(currentFormat); // Load data for the selected category and format
+      }
+
+      // Load rankings based on format (Test, ODI, T20)
+      function loadFormat(format) {
+        currentFormat = format;
+
+        const rankColumn = document.getElementById("rankType");
+        rankColumn.textContent = `${format.charAt(0).toUpperCase() + format.slice(1)} Rank`;
+
+        if (currentCategory === "players") {
+          fetchRankings(`http://localhost:3000/api/rankings/${format}`);
+        } else {
+          fetchRankings(`http://localhost:3000/api/rankings/teams/${format}`);
+        }
+      }
+
+      // Fetch and populate rankings
+      function fetchRankings(endpoint) {
+        fetch(endpoint)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Network response was not ok " + response.statusText,
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const tableBody = document.querySelector("#rankingsTable tbody");
+            tableBody.innerHTML = ""; // Clear previous data
+
+            // If no data is found
+            if (!Array.isArray(data) || data.length === 0) {
+              tableBody.innerHTML =
+                '<tr><td colspan="2">No rankings data available.</td></tr>';
+              return;
             }
 
-            loadFormat(currentFormat); // Load data for the selected category and format
-        }
-
-        // Load rankings based on format (Test, ODI, T20)
-        function loadFormat(format) {
-            currentFormat = format;
-
-            const rankColumn = document.getElementById("rankType");
-            rankColumn.textContent = `${format.charAt(0).toUpperCase() + format.slice(1)} Rank`;
-
-            if (currentCategory === 'players') {
-                fetchRankings(`http://localhost:3000/api/rankings/${format}`);
-            } else {
-                fetchRankings(`http://localhost:3000/api/rankings/teams/${format}`);
-            }
-        }
-
-        // Fetch and populate rankings
-        function fetchRankings(endpoint) {
-            fetch(endpoint)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const tableBody = document.querySelector('#rankingsTable tbody');
-                    tableBody.innerHTML = ''; // Clear previous data
-
-                    // If no data is found
-                    if (!Array.isArray(data) || data.length === 0) {
-                        tableBody.innerHTML = '<tr><td colspan="2">No rankings data available.</td></tr>';
-                        return;
-                    }
-
-                    // Populate table with the rankings data
-                    data.forEach(item => {
-                        const row = document.createElement('tr');
-                        if (currentCategory === 'players') {
-                            row.innerHTML = `
-                                <td>${item.player_name || 'Unknown Player'}</td>
-                                <td>${item[`${currentFormat}_rank`] !== null && item[`${currentFormat}_rank`] !== undefined ? item[`${currentFormat}_rank`] : 'N/A'}</td>
+            // Populate table with the rankings data
+            data.forEach((item) => {
+              const row = document.createElement("tr");
+              if (currentCategory === "players") {
+                row.innerHTML = `
+                                <td>${item.player_name || "Unknown Player"}</td>
+                                <td>${item[`${currentFormat}_rank`] !== null && item[`${currentFormat}_rank`] !== undefined ? item[`${currentFormat}_rank`] : "N/A"}</td>
                             `;
-                        } else {
-                            row.innerHTML = `
-                                <td>${item.team_name || 'Unknown Team'}</td>
-                                <td>${item[`${currentFormat}_rank`] !== null && item[`${currentFormat}_rank`] !== undefined ? item[`${currentFormat}_rank`] : 'N/A'}</td>
+              } else {
+                row.innerHTML = `
+                                <td>${item.team_name || "Unknown Team"}</td>
+                                <td>${item[`${currentFormat}_rank`] !== null && item[`${currentFormat}_rank`] !== undefined ? item[`${currentFormat}_rank`] : "N/A"}</td>
                             `;
-                        }
-                        tableBody.appendChild(row);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching rankings data:', error);
-                    document.querySelector('#rankingsTable tbody').innerHTML = '<tr><td colspan="2">Error loading data</td></tr>';
-                });
-        }
+              }
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching rankings data:", error);
+            document.querySelector("#rankingsTable tbody").innerHTML =
+              '<tr><td colspan="2">Error loading data</td></tr>';
+          });
+      }
 
-        // Load Players Test Rankings by default on page load
-        document.addEventListener('DOMContentLoaded', () => showCategory('players'));
+      // Load Players Test Rankings by default on page load
+      document.addEventListener("DOMContentLoaded", () =>
+        showCategory("players"),
+      );
     </script>
-</body>
+  </body>
 </html>

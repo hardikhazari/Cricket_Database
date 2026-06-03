@@ -1,152 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard - CricPulse</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .admin-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .admin-container h2 {
-            text-align: center;
-            color: #1a237e;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        .admin-btn {
-            width: 100%;
-            padding: 12px;
-            background: #1a237e;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .admin-btn:hover {
-            background: #0d47a1;
-        }
+      .admin-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .admin-container h2 {
+        text-align: center;
+        color: #1a237e;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .admin-btn {
+        width: 100%;
+        padding: 12px;
+        background: #1a237e;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .admin-btn:hover {
+        background: #0d47a1;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo">🏏 CricPulse Admin</div>
-        <nav>
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: 600;">Back to Home</a>
-        </nav>
+      <div class="logo">🏏 CricPulse Admin</div>
+      <nav>
+        <a
+          href="index.html"
+          style="color: white; text-decoration: none; font-weight: 600"
+          >Back to Home</a
+        >
+      </nav>
     </header>
 
     <div class="admin-container">
-        <h2>Add New Match</h2>
-        <form id="addMatchForm">
-            <div class="form-group">
-                <label>Admin Email</label>
-                <input type="email" id="adminEmail" required placeholder="Enter your admin email">
-            </div>
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" id="matchDate" required>
-            </div>
-            <div class="form-group">
-                <label>Timings</label>
-                <input type="text" id="matchTime" required placeholder="e.g., 14:00 GMT">
-            </div>
-            <div class="form-group">
-                <label>Place (Venue)</label>
-                <input type="text" id="matchPlace" required>
-            </div>
-            <div style="display:flex; gap:10px;">
-                <div class="form-group" style="flex:1;">
-                    <label>Team A ID</label>
-                    <input type="text" id="teamA" required placeholder="e.g., IND">
-                </div>
-                <div class="form-group" style="flex:1;">
-                    <label>Team B ID</label>
-                    <input type="text" id="teamB" required placeholder="e.g., AUS">
-                </div>
-            </div>
-            <div style="display:flex; gap:10px;">
-                <div class="form-group" style="flex:1;">
-                    <label>Score 1</label>
-                    <input type="text" id="score1" placeholder="e.g., 250/5">
-                </div>
-                <div class="form-group" style="flex:1;">
-                    <label>Score 2</label>
-                    <input type="text" id="score2" placeholder="e.g., 248/10">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Winner Team ID</label>
-                <input type="text" id="winnerId" placeholder="e.g., IND">
-            </div>
-            <div class="form-group">
-                <label>Status</label>
-                <input type="text" id="matchStatus" required placeholder="e.g., Completed">
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <textarea id="matchDesc" rows="2" placeholder="Match summary..."></textarea>
-            </div>
-            <button type="submit" class="admin-btn">Insert Match into Database</button>
-        </form>
+      <h2>Add New Match</h2>
+      <form id="addMatchForm">
+        <div class="form-group">
+          <label>Admin Email</label>
+          <input
+            type="email"
+            id="adminEmail"
+            required
+            placeholder="Enter your admin email"
+          />
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="matchDate" required />
+        </div>
+        <div class="form-group">
+          <label>Timings</label>
+          <input
+            type="text"
+            id="matchTime"
+            required
+            placeholder="e.g., 14:00 GMT"
+          />
+        </div>
+        <div class="form-group">
+          <label>Place (Venue)</label>
+          <input type="text" id="matchPlace" required />
+        </div>
+        <div style="display: flex; gap: 10px">
+          <div class="form-group" style="flex: 1">
+            <label>Team A ID</label>
+            <input type="text" id="teamA" required placeholder="e.g., IND" />
+          </div>
+          <div class="form-group" style="flex: 1">
+            <label>Team B ID</label>
+            <input type="text" id="teamB" required placeholder="e.g., AUS" />
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px">
+          <div class="form-group" style="flex: 1">
+            <label>Score 1</label>
+            <input type="text" id="score1" placeholder="e.g., 250/5" />
+          </div>
+          <div class="form-group" style="flex: 1">
+            <label>Score 2</label>
+            <input type="text" id="score2" placeholder="e.g., 248/10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Winner Team ID</label>
+          <input type="text" id="winnerId" placeholder="e.g., IND" />
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <input
+            type="text"
+            id="matchStatus"
+            required
+            placeholder="e.g., Completed"
+          />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            id="matchDesc"
+            rows="2"
+            placeholder="Match summary..."
+          ></textarea>
+        </div>
+        <button type="submit" class="admin-btn">
+          Insert Match into Database
+        </button>
+      </form>
     </div>
 
     <script>
-        document.getElementById('addMatchForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const payload = {
-                email: document.getElementById('adminEmail').value,
-                dates: document.getElementById('matchDate').value,
-                timings: document.getElementById('matchTime').value,
-                place: document.getElementById('matchPlace').value,
-                teamA: document.getElementById('teamA').value,
-                teamB: document.getElementById('teamB').value,
-                score1: document.getElementById('score1').value,
-                score2: document.getElementById('score2').value,
-                winnerId: document.getElementById('winnerId').value,
-                status: document.getElementById('matchStatus').value,
-                description: document.getElementById('matchDesc').value
-            };
+      document
+        .getElementById("addMatchForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
 
-            try {
-                const res = await fetch('http://localhost:3000/api/admin/match', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const data = await res.json();
-                if (res.ok) {
-                    alert('Success: ' + data.message);
-                    e.target.reset();
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            } catch (err) {
-                alert('Failed to connect to server.');
+          const payload = {
+            email: document.getElementById("adminEmail").value,
+            dates: document.getElementById("matchDate").value,
+            timings: document.getElementById("matchTime").value,
+            place: document.getElementById("matchPlace").value,
+            teamA: document.getElementById("teamA").value,
+            teamB: document.getElementById("teamB").value,
+            score1: document.getElementById("score1").value,
+            score2: document.getElementById("score2").value,
+            winnerId: document.getElementById("winnerId").value,
+            status: document.getElementById("matchStatus").value,
+            description: document.getElementById("matchDesc").value,
+          };
+
+          try {
+            const res = await fetch("http://localhost:3000/api/admin/match", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+            if (res.ok) {
+              alert("Success: " + data.message);
+              e.target.reset();
+            } else {
+              alert("Error: " + data.message);
             }
+          } catch (err) {
+            alert("Failed to connect to server.");
+          }
         });
     </script>
-</body>
+  </body>
 </html>
